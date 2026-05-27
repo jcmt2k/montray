@@ -1,0 +1,50 @@
+{
+  "name": "montray",
+  "version": "1.0.0",
+  "description": "Aplicación de bandeja de sistema para el monitoreo de servidores, URLs e IPs.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "keywords": [
+    "monitoring",
+    "ping",
+    "http",
+    "system-tray",
+    "electron"
+  ],
+  "author": {
+    "name": "Julio Mejia",
+    "email": "jcmt2k@gmail.com"
+  },
+  "homepage": "https://github.com/juliom/montray",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^30.0.2",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.juliom.montray",
+    "productName": "MonTray",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*",
+      "assets/**/*"
+    ],
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "category": "Network;Utility",
+      "icon": "assets/app-icon.png",
+      "synopsis": "Monitoreo de servidores en bandeja de sistema",
+      "description": "Monitoreo liviano en bandeja de sistema con alertas nativas para servidores, URLs e IPs en Linux."
+    }
+  }
+}
