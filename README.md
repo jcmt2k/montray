@@ -177,8 +177,10 @@ El monitoreo de latencia mediante Ping/ICMP interactúa con comandos de consola 
 
 ---
 
-## ✒️ Autor y Licencia
+## ✒️ Autor, Enfoque Académico y Licencia
 
-Desarrollado con dedicación por **Julio Mejía** ([jcmt2k@gmail.com](mailto:jcmt2k@gmail.com)).
+Este proyecto fue desarrollado con fines exclusivamente académicos por **Julio Mejía** ([jcmt2k@gmail.com](mailto:jcmt2k@gmail.com)).
+
+La investigación y diseño de este software se centran en analizar de forma comparativa la viabilidad, eficiencia técnica y consumo de recursos en entornos de escritorio Linux, contrastando una arquitectura híbrida basada en tecnologías web (Electron) frente a una implementación nativa de bajo consumo (PyQt6). Para la optimización, estructuración y refinamiento del código fuente, el desarrollo contó con el soporte interactivo de un asistente de inteligencia artificial.
 
 Este proyecto está bajo la Licencia **MIT**. Consulta el archivo [LICENSE](LICENSE) para obtener más detalles.
