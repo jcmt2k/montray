@@ -414,21 +414,52 @@ body {
 
 .history-bars {
   display: flex;
-  gap: 3px;
-  height: 18px;
+  gap: 4px;
+  height: 42px;
 }
 
 .history-bar-item {
   flex: 1;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 2px;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 1px;
+  height: 100%;
   position: relative;
   cursor: pointer;
 }
 
-.history-bar-item.val-online { background: #10b981; }
-.history-bar-item.val-offline { background: #ef4444; }
-.history-bar-item.val-warning { background: #f59e0b; }
+.history-block {
+  flex: 1;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 1px;
+  transition: var(--transition-smooth);
+}
+
+.history-block.filled.lvl-low {
+  background: var(--color-online);
+  box-shadow: 0 0 2px var(--color-online-glow);
+}
+
+.history-block.filled.lvl-mid {
+  background: var(--color-warning);
+  box-shadow: 0 0 2px var(--color-warning-glow);
+}
+
+.history-block.filled.lvl-high {
+  background: var(--color-offline);
+  box-shadow: 0 0 2px var(--color-offline-glow);
+}
+
+.history-block.filled.val-offline {
+  background: var(--color-offline);
+  box-shadow: 0 0 2px var(--color-offline-glow);
+}
+
+.history-bar-item:hover .history-block.filled {
+  filter: brightness(1.2);
+  transform: scaleX(1.15);
+}
 
 /* Tooltip en barras de historial */
 .history-bar-item::after {
@@ -590,17 +621,15 @@ input:checked + .slider:before {
   margin: 0 !important;
   border: 1px solid var(--color-card-border);
   border-radius: var(--radius-lg);
-  background: rgba(15, 20, 31, 0.96);
-  backdrop-filter: blur(20px);
+  background: #0f141f;
   color: var(--color-text-main);
   padding: 0;
   width: 90%;
   max-width: 480px;
-  /* Altura máxima optimizada para el tamaño de ventana de Electron */
-  max-height: 80vh;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+  /* Altura máxima optimizada para el tamaño de ventana */
+  max-height: 85vh;
+  display: block;
+  overflow: auto;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255,255,255,0.05);
 }
 
@@ -615,16 +644,13 @@ input:checked + .slider:before {
 }
 
 @keyframes modalScaleIn {
-  from { transform: scale(0.9) translateY(20px); opacity: 0; }
-  to { transform: scale(1) translateY(0); opacity: 1; }
+  from { transform: translate(-50%, -50%) scale(0.9) translateY(20px); opacity: 0; }
+  to { transform: translate(-50%, -50%) scale(1) translateY(0); opacity: 1; }
 }
 
 .dialog-content-form {
-  display: flex;
-  flex-direction: column;
+  display: block;
   height: 100%;
-  overflow: hidden;
-  flex: 1;
 }
 
 .dialog-header {

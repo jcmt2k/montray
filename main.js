@@ -8,7 +8,7 @@ let mainWindow = null;
 let isMonitoringActive = true;
 const siteTimers = {};
 
-// Ruta de almacenamiento de configuración en ~/.config/monitray/
+// Ruta de almacenamiento de configuración en ~/.config/montray/
 const userDataPath = app.getPath('userData');
 if (!fs.existsSync(userDataPath)) {
   fs.mkdirSync(userDataPath, { recursive: true });
@@ -262,7 +262,7 @@ function stopAllMonitoring() {
 
 function updateAutostart(enabled) {
   const autostartDir = path.join(app.getPath('home'), '.config', 'autostart');
-  const autostartFile = path.join(autostartDir, 'monitray.desktop');
+  const autostartFile = path.join(autostartDir, 'montray.desktop');
   
   try {
     if (enabled) {

@@ -5,7 +5,11 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder"
+    "dist": "electron-builder",
+    "build:electron": "electron-builder --linux deb",
+    "build:system": "node build-system-deb.js",
+    "build:tauri": "npx @tauri-apps/cli build --bundles deb && mkdir -p dist && cp src-tauri/target/release/bundle/deb/montray_1.0.0_amd64.deb dist/montray-tauri_1.0.0_amd64.deb",
+    "build:all": "npm run build:electron && npm run build:system && npm run build:tauri"
   },
   "keywords": [
     "monitoring",
@@ -18,7 +22,7 @@
     "name": "Julio Mejia",
     "email": "jcmt2k@gmail.com"
   },
-  "homepage": "https://github.com/juliom/montray",
+  "homepage": "https://github.com/jcmt2k/montray",
   "license": "MIT",
   "devDependencies": {
     "electron": "^30.0.2",
@@ -30,6 +34,12 @@
     "directories": {
       "output": "dist"
     },
+    "electronLanguages": [
+      "es",
+      "es-419",
+      "en-US",
+      "en-GB"
+    ],
     "files": [
       "main.js",
       "preload.js",

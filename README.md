@@ -22,7 +22,7 @@
 *   **Gráficos en Tiempo Real:** Mini-gráficas vectoriales (SVG) reactivas dentro de cada tarjeta de monitor, mostrando el historial de latencia y estado de los últimos 20 chequeos en tiempo real.
 *   **Intervalos Flexibles:** Configura la frecuencia de comprobación de forma global o define intervalos personalizados en segundos de forma individual por sitio.
 *   **Auto-inicio con el Sistema (Autostart):** Registro seguro en Linux para iniciar la aplicación minimizada automáticamente en segundo plano cuando inicies sesión en tu sistema operativo.
-*   **Almacenamiento Local:** Configuración guardada en texto plano bajo un estándar seguro en `~/.config/monitray/sites.json`.
+*   **Almacenamiento Local:** Configuración guardada en texto plano bajo un estándar seguro en `~/.config/montray/sites.json`.
 
 ---
 

@@ -38,7 +38,7 @@ const btnCancelSettings = document.getElementById('btnCancelSettings');
 document.addEventListener('DOMContentLoaded', async () => {
   // Ajustar la ruta en el footer
   if (configPathText) {
-    configPathText.textContent = '~/.config/monitray';
+    configPathText.textContent = '~/.config/montray';
   }
 
   // Cargar datos iniciales
@@ -133,9 +133,13 @@ function createMonitorCard(site) {
   const paddingLength = Math.max(0, maxHistory - history.length);
   let historyBarsHtml = '';
 
-  // Rellenar con vacíos si no hay suficiente historial
+  // Rellenar con vacíos si no hay suficiente historial (cada barra contiene 20 cuadros pequeñitos vacíos)
   for (let i = 0; i < paddingLength; i++) {
-    historyBarsHtml += '<div class="history-bar-item" data-tooltip="Sin datos"></div>';
+    let emptyBlocksHtml = '';
+    for (let j = 0; j < 20; j++) {
+      emptyBlocksHtml += '<span class="history-block"></span>';
+    }
+    historyBarsHtml += `<div class="history-bar-item" data-tooltip="Sin datos">${emptyBlocksHtml}</div>`;
   }
 
   // Añadir datos reales
@@ -152,7 +156,39 @@ function createMonitorCard(site) {
     }
     const lat = item.latency !== null ? `${item.latency} ms` : 'Sin respuesta';
     const tooltip = `${itemDate} - ${statusLabel} (${lat})`;
-    historyBarsHtml += `<div class="history-bar-item ${valClass}" data-tooltip="${tooltip}"></div>`;
+
+    // Determinar la cantidad de cuadritos activos (de 1 a 20) representando el porcentaje de latencia.
+    // Usamos 1000 ms como referencia máxima (100% de demora).
+    let activeBlocksCount = 0;
+    if (!item.online) {
+      // Si el servidor está caído, se llenan los 20 bloques en color rojo.
+      activeBlocksCount = 20;
+    } else {
+      const maxLatencyReference = 1000;
+      activeBlocksCount = Math.max(1, Math.min(20, Math.round((item.latency / maxLatencyReference) * 20)));
+    }
+
+    let blocksHtml = '';
+    for (let j = 0; j < 20; j++) {
+      if (j < activeBlocksCount) {
+        if (!item.online) {
+          blocksHtml += `<span class="history-block filled val-offline"></span>`;
+        } else {
+          // Asignar el color dinámico por nivel: verde abajo, ámbar en el medio, rojo arriba.
+          let levelClass = 'lvl-low';
+          if (j >= 8 && j < 14) {
+            levelClass = 'lvl-mid';
+          } else if (j >= 14) {
+            levelClass = 'lvl-high';
+          }
+          blocksHtml += `<span class="history-block filled ${levelClass}"></span>`;
+        }
+      } else {
+        blocksHtml += '<span class="history-block"></span>';
+      }
+    }
+
+    historyBarsHtml += `<div class="history-bar-item" data-tooltip="${tooltip}">${blocksHtml}</div>`;
   });
 
   // Generador de sección de error si aplica
