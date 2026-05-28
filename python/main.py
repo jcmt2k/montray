@@ -1004,7 +1004,8 @@ Categories=Network;Utility;
 
     def closeEvent(self, event):
         # En lugar de cerrar, ocultamos a la bandeja
-        if not QApplication.isSavingSession():
+        app_inst = QApplication.instance()
+        if app_inst and not app_inst.isSavingSession():
             event.ignore()
             self.hide()
 
