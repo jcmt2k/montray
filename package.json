@@ -5,11 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder",
-    "build:electron": "electron-builder --linux deb",
-    "build:system": "node build-system-deb.js",
-    "build:tauri": "npx @tauri-apps/cli build --bundles deb && mkdir -p dist && cp src-tauri/target/release/bundle/deb/montray_1.0.0_amd64.deb dist/montray-tauri_1.0.0_amd64.deb",
-    "build:all": "npm run build:electron && npm run build:system && npm run build:tauri"
+    "dist": "electron-builder"
   },
   "keywords": [
     "monitoring",
